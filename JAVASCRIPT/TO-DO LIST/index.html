@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Plan</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: yellow;
+        }
+        #todo-container {
+            max-width: 400px;
+            margin: auto;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #todo-container:hover{
+            box-shadow: 10px rgb(215, 76, 76);
+
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="todo-container">
+        <h2>Create Your Daily Plan</h2>
+        <input type="text" id="todo-input" placeholder="Add a new Task">
+        <input type="date" id="todo-date">
+        <button onclick="addTask()">Add</button>
+        <ul id="todo-list"></ul>
+    </div>
+    
+    <script>
+        function addTask(){
+            const input=document.getElementById("todo-input");
+            const dateInput = document.getElementById("todo-date");
+            const taskText=input.value.trim();
+            const date=dateInput.value.trim();
+            if(taskText==="") return;
+
+            const li = document.createElement("li");
+            li.innerHTML = `${taskText} , ${date} <button onclick="removeTask(this)">X</button>`;
+            document.getElementById("todo-list").appendChild(li);
+            
+
+            input.value = "";
+
+        }
+
+        function removeTask(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
